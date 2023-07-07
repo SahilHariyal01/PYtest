@@ -1,6 +1,5 @@
 import cv2
 import time
-cascade_src = 'dataset/cars1.xml'
 video_src = 'dataset/cars_on_highway (1080p).mp4'
 #line a
 ax1=70
@@ -18,10 +17,8 @@ def Speed_Cal(time):
     except ZeroDivisionError:
         print (5)
 
-#car num
 i = 1
 start_time = time.time()
-#video ....
 cap = cv2.VideoCapture(video_src)
 
 
@@ -29,12 +26,11 @@ while True:
     ret, img = cap.read()
     if (type(img) == type(None)):
         break
-    #bluring to have exacter detection
+    
     blurred = cv2.blur(img,ksize=(15,15))
     gray = cv2.cvtColor(blurred, cv2.COLOR_BGR2GRAY)
-    cars = car_cascade.detectMultiScale(gray, 1.1, 2)
 
-    #line a #i know road has got
+    
     cv2.line(img,(ax1,ay),(ax2,ay),(255,0,0),2)
     #line b
     cv2.line(img,(bx1,by),(bx2,by),(255,0,0),2)
